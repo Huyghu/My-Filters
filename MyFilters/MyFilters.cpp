@@ -6,7 +6,7 @@
 #include <opencv2/imgproc.hpp>
 
 MyFilters::MyFilters() :
-	_window(sf::VideoMode(500, 500), "My Filters"), _downloadButton("../Lena.png", 50, 50, 10, 20)
+	_window(sf::VideoMode(500, 500), "My Filters"), _downloadButton("..//Assets//download.jpg", 50, 50, 200, 100)
 {
 }
 
