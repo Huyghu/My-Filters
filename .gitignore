@@ -328,3 +328,7 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+opencv*
+SFML-2.5.1*
+x64*
