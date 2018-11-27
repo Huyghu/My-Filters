@@ -166,11 +166,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="InputBox.h" />
     <ClInclude Include="MyFilters.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="InputBox.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyFilters.cpp" />
     <ClCompile Include="pch.cpp">
