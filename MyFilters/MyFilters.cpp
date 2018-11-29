@@ -3,11 +3,13 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
+#include "GreyScale.h"
 
 MyFilters::MyFilters() :
 	_window(sf::VideoMode(700, 700), "My Filters"), _downloadButton("../Assets/download.jpg", 400, 600, 135, 39),
 	_filePathBox(20, 15, 345, 35), _loadImageButton("../Assets/GoButton.png", 370, 15, 35, 35), _outputImage(50, 50, 500, 500)
 {
+	filters["GreyScale"] = std::make_unique<GreyScale>();
 }
 
 void MyFilters::go()
@@ -45,5 +47,12 @@ void MyFilters::go()
 
 void MyFilters::loadImage(std::string const &imagePath)
 {
-	_outputImage.loadImage(imagePath);
+	try {
+		_outputImage.loadImage(imagePath);
+		filters["GreyScale"]->applyFilter(_outputImage);
+	}
+	catch (std::exception e) {
+		//OUTPUT ERROR
+		return;
+	}
 }

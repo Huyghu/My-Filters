@@ -168,12 +168,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="GreyScale.h" />
+    <ClInclude Include="IFilter.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="InputBox.h" />
     <ClInclude Include="MyFilters.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="GreyScale.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputBox.cpp" />
     <ClCompile Include="main.cpp" />

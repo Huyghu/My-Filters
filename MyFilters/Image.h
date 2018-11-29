@@ -6,14 +6,16 @@
 #include <string>
 
 class Image {
-	
+	cv::Mat		_cvImage;
 	sf::Texture _texture;
-	sf::Sprite _sprite;
+	sf::Sprite	_sprite;
 
 public:
 	Image(float x, float y, float width, float height);
 	~Image() = default;
 
 	int					loadImage(std::string const &imagePath);
+	void				reloadImage();
 	sf::Sprite const	&getImage() const;
+	cv::Mat const		&getRawImage() const;
 };
