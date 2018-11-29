@@ -1,6 +1,5 @@
-#include "pch.h"
-#include <iostream>
 #include "Button.h"
+#include <iostream>
 
 Button::Button(std::string const &imagePath, float x, float y, float width, float height) :
 	_buttonImage(sf::Vector2f(width, height))

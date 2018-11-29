@@ -2,12 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include "Button.h"
 #include "InputBox.h"
+#include "Image.h"
 
 class MyFilters {
 	sf::RenderWindow _window;
-	Button _downloadButton;
-	InputBox _filePathBox;
-	Button _loadImageButton;
+	Button			_downloadButton;
+	Button			_loadImageButton;
+	InputBox		_filePathBox;
+	Image			_outputImage;
 
 public:
 	MyFilters();
