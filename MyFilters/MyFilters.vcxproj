@@ -168,6 +168,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="ColorHue.h" />
     <ClInclude Include="GreyScale.h" />
     <ClInclude Include="IFilter.h" />
     <ClInclude Include="Image.h" />
@@ -176,6 +177,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ColorHue.cpp" />
     <ClCompile Include="GreyScale.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="InputBox.cpp" />
