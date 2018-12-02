@@ -167,7 +167,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BGRColorHue.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="ClarendonFilter.h" />
     <ClInclude Include="ColorHue.h" />
     <ClInclude Include="ColorFocus.h" />
     <ClInclude Include="GreyScale.h" />
@@ -179,7 +181,9 @@
     <ClInclude Include="ToneFilter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BGRColorHue.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ClarendonFilter.cpp" />
     <ClCompile Include="ColorHue.cpp" />
     <ClCompile Include="ColorFocus.cpp" />
     <ClCompile Include="GreyScale.cpp" />

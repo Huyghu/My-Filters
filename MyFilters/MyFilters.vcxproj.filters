@@ -45,6 +45,12 @@
     <ClInclude Include="ToneFilter.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="ClarendonFilter.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="BGRColorHue.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MyFilters.cpp">
@@ -75,6 +81,12 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="ToneFilter.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ClarendonFilter.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="BGRColorHue.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
