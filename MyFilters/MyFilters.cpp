@@ -5,13 +5,19 @@
 #include <opencv2/imgproc.hpp>
 #include "GreyScale.h"
 #include "ColorHue.h"
+#include "ColorFocus.h"
 
 MyFilters::MyFilters() :
 	_window(sf::VideoMode(700, 700), "My Filters"), _downloadButton("../Assets/download.jpg", 400, 600, 135, 39),
 	_filePathBox(20, 15, 345, 35), _loadImageButton("../Assets/GoButton.png", 370, 15, 35, 35), _outputImage(50, 50, 500, 500)
 {
     filters["GreyScale"] = std::make_unique<GreyScale>();
-    filters["ColorHue"] = std::make_unique<ColorHue>();
+    filters["BlueHue"] = std::make_unique<ColorHue>(0);
+    filters["GreenHue"] = std::make_unique<ColorHue>(1);
+    filters["RedHue"] = std::make_unique<ColorHue>(2);
+    filters["BlueFocus"] = std::make_unique<ColorFocus>(0);
+    filters["GreenFocus"] = std::make_unique<ColorFocus>(1);
+    filters["RedFocus"] = std::make_unique<ColorFocus>(2);
 }
 
 void MyFilters::go()
@@ -52,7 +58,7 @@ void MyFilters::loadImage(std::string const &imagePath)
 	try {
 		_outputImage.loadImage(imagePath);
 //        filters["GreyScale"]->applyFilter(_outputImage);
-        filters["ColorHue"]->applyFilter(_outputImage);
+        filters["BlueFocus"]->applyFilter(_outputImage);
     }
 	catch (std::exception e) {
 		//OUTPUT ERROR
