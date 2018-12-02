@@ -175,6 +175,7 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="InputBox.h" />
     <ClInclude Include="MyFilters.h" />
+    <ClInclude Include="PixelFilter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
@@ -185,6 +186,7 @@
     <ClCompile Include="InputBox.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MyFilters.cpp" />
+    <ClCompile Include="PixelFilter.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

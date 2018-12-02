@@ -6,6 +6,7 @@
 #include "GreyScale.h"
 #include "ColorHue.h"
 #include "ColorFocus.h"
+#include "PixelFilter.h"
 
 MyFilters::MyFilters() :
 	_window(sf::VideoMode(700, 700), "My Filters"), _downloadButton("../Assets/download.jpg", 400, 600, 135, 39),
@@ -18,6 +19,7 @@ MyFilters::MyFilters() :
     filters["BlueFocus"] = std::make_unique<ColorFocus>(0);
     filters["GreenFocus"] = std::make_unique<ColorFocus>(1);
     filters["RedFocus"] = std::make_unique<ColorFocus>(2);
+    filters["SmallPixel"] = std::make_unique<PixelFilter>();
 }
 
 void MyFilters::go()
@@ -58,7 +60,7 @@ void MyFilters::loadImage(std::string const &imagePath)
 	try {
 		_outputImage.loadImage(imagePath);
 //        filters["GreyScale"]->applyFilter(_outputImage);
-        filters["BlueFocus"]->applyFilter(_outputImage);
+        filters["SmallPixel"]->applyFilter(_outputImage);
     }
 	catch (std::exception e) {
 		//OUTPUT ERROR
