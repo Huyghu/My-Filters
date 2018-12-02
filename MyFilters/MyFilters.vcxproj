@@ -179,6 +179,7 @@
     <ClInclude Include="MyFilters.h" />
     <ClInclude Include="PixelFilter.h" />
     <ClInclude Include="ToneFilter.h" />
+    <ClInclude Include="VignetFilter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BGRColorHue.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="MyFilters.cpp" />
     <ClCompile Include="PixelFilter.cpp" />
     <ClCompile Include="ToneFilter.cpp" />
+    <ClCompile Include="VignetFilter.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

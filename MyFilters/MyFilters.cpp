@@ -10,6 +10,7 @@
 #include "ToneFilter.h"
 #include "ClarendonFilter.h"
 #include "BGRColorHue.h"
+#include "VignetFilter.h"
 
 MyFilters::MyFilters() :
 	_window(sf::VideoMode(700, 700), "My Filters"), _downloadButton("../Assets/download.jpg", 400, 600, 135, 39),
@@ -33,6 +34,8 @@ MyFilters::MyFilters() :
     filters["Valencia"] = std::make_unique<BGRColorHue>(0, 35, 35);
     filters["Juno"] = std::make_unique<BGRColorHue>(0, 35, 70);
     filters["Lark"] = std::make_unique<BGRColorHue>(10, 10, -25); //ToCheck
+
+    filters["testVignet"] = std::make_unique<VignetFilter>(0, 50);
 }
 
 void MyFilters::go()
@@ -73,7 +76,7 @@ void MyFilters::loadImage(std::string const &imagePath)
 	try {
 		_outputImage.loadImage(imagePath);
 //        filters["GreyScale"]->applyFilter(_outputImage);
-        filters["Lark"]->applyFilter(_outputImage);
+        filters["testVignet"]->applyFilter(_outputImage);
     }
 	catch (std::exception e) {
 		//OUTPUT ERROR
