@@ -7,6 +7,7 @@
 #include "ColorHue.h"
 #include "ColorFocus.h"
 #include "PixelFilter.h"
+#include "ToneFilter.h"
 
 MyFilters::MyFilters() :
 	_window(sf::VideoMode(700, 700), "My Filters"), _downloadButton("../Assets/download.jpg", 400, 600, 135, 39),
@@ -20,6 +21,12 @@ MyFilters::MyFilters() :
     filters["GreenFocus"] = std::make_unique<ColorFocus>(1);
     filters["RedFocus"] = std::make_unique<ColorFocus>(2);
     filters["SmallPixel"] = std::make_unique<PixelFilter>();
+    filters["Brigther"] = std::make_unique<ToneFilter>(ToneCurve::Linear, 20);
+    filters["Darker"] = std::make_unique<ToneFilter>(ToneCurve::Linear, -20);
+    filters["MoreContrast"] = std::make_unique<ToneFilter>(ToneCurve::Contrast, 0);
+    filters["LessContrast"] = std::make_unique<ToneFilter>(ToneCurve::Contrast, 1);
+//    filters["GammeFilter"] = std::make_unique<ToneFilter>(ToneCurve::Gamma);  WIP
+    filters["RevertTone"] = std::make_unique<ToneFilter>(ToneCurve::Revert);
 }
 
 void MyFilters::go()
@@ -60,7 +67,7 @@ void MyFilters::loadImage(std::string const &imagePath)
 	try {
 		_outputImage.loadImage(imagePath);
 //        filters["GreyScale"]->applyFilter(_outputImage);
-        filters["SmallPixel"]->applyFilter(_outputImage);
+        filters["MoreContrast"]->applyFilter(_outputImage);
     }
 	catch (std::exception e) {
 		//OUTPUT ERROR
