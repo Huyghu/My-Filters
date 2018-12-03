@@ -13,8 +13,8 @@
 #include "VignetFilter.h"
 
 MyFilters::MyFilters() :
-	_window(sf::VideoMode(700, 700), "My Filters"), _downloadButton("../Assets/download.jpg", 400, 600, 135, 39),
-	_filePathBox(20, 15, 345, 35), _loadImageButton("../Assets/GoButton.png", 370, 15, 35, 35), _outputImage(50, 50, 500, 500)
+	_window(sf::VideoMode(1280, 720), "My Filters"), _downloadButton("../Assets/download.jpg", 400, 600, 135, 39),
+	_filePathBox(20, 15, 345, 35), _loadImageButton("../Assets/GoButton.png", 370, 15, 35, 35), _outputImage(20, 60, 500, 500)
 {
     filters["GreyScale"] = std::make_unique<GreyScale>();
     filters["BlueHue"] = std::make_unique<ColorHue>(0);
@@ -66,7 +66,7 @@ void MyFilters::go()
 		_window.draw(_filePathBox.getInputBoxImage());
 		_window.draw(_filePathBox.getTextImage());
 		_window.draw(_loadImageButton.getButtonImage());
-		_window.draw(_outputImage.getImage());
+		_window.draw(*_outputImage.getImage());
 		_window.display();
 	}
 }
