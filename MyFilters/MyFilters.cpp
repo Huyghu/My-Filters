@@ -29,9 +29,9 @@ MyFilters::MyFilters() :
     filters["BlueFocus"] = std::make_unique<ColorFocus>(0);
     filters["GreenFocus"] = std::make_unique<ColorFocus>(1);
     filters["RedFocus"] = std::make_unique<ColorFocus>(2);
-    filters["SmallPixel"] = std::make_unique<PixelFilter>();
-    filters["Brigther"] = std::make_unique<ToneFilter>(ToneCurve::Linear, 20);
-    filters["Darker"] = std::make_unique<ToneFilter>(ToneCurve::Linear, -20);
+    filters["SmallPixel"] = std::make_unique<PixelFilter>(4);
+    filters["Brigther"] = std::make_unique<ToneFilter>(ToneCurve::Brightness, 20);
+    filters["Darker"] = std::make_unique<ToneFilter>(ToneCurve::Brightness, -20);   
     filters["MoreContrast"] = std::make_unique<ToneFilter>(ToneCurve::Contrast, 0);
     filters["LessContrast"] = std::make_unique<ToneFilter>(ToneCurve::Contrast, 1);
 //    filters["GammeFilter"] = std::make_unique<ToneFilter>(ToneCurve::Gamma);  WIP
@@ -39,9 +39,10 @@ MyFilters::MyFilters() :
     filters["Clarendon"] = std::make_unique<ClarendonFilter>();
     filters["Valencia"] = std::make_unique<BGRColorHue>(0, 35, 35);
     filters["Juno"] = std::make_unique<BGRColorHue>(0, 35, 70);
-    filters["Lark"] = std::make_unique<BGRColorHue>(10, 10, -25); //ToCheck
-
-    filters["testVignet"] = std::make_unique<VignetFilter>(0, 50);
+    filters["Lark"] = std::make_unique<BGRColorHue>(10, 10, -25);
+    filters["Perpetua"] = std::make_unique<BGRColorHue>(15, 45, 30);
+    filters["Amaro"] = std::make_unique<VignetFilter>(0, 60, 0, 15, 15);
+    filters["Mayfair"] = std::make_unique<VignetFilter>(1, 60, 20, 5, 5);
 }
 
 void MyFilters::go()
