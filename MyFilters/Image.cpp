@@ -47,4 +47,5 @@ cv::Mat const		&Image::getRawImage() const {
 
 void				Image::setRawImage(cv::Mat img) {
 	_cvImage = img;
+	reloadImage();
 }

@@ -9,9 +9,11 @@
 class MyFilters {
 	sf::RenderWindow _window;
 	Button			_downloadButton;
+	Button			_resetButton;
 	Button			_loadImageButton;
 	InputBox		_filePathBox;
 	Image			_outputImage;
+	Image			_savedImage;
 	bool			_isLoad;
 	std::unordered_map<std::string, std::unique_ptr<IFilter>> filters;
 
@@ -22,6 +24,6 @@ public:
 	void go();
 
 private:
-	void loadImage(std::string const &);
-
+	void	loadImage(std::string const &);
+	void	resetImage();
 };

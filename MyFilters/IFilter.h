@@ -17,7 +17,6 @@ public:
 		_preview = std::make_unique<Image>(x, y, width, height);
 		_button = std::make_shared<Button>(x, y, width, height);
 		_preview->setRawImage(img.getRawImage().clone());
-		_preview->reloadImage();
 		applyFilter(*_preview);
 		_button->setButtonImage(*_preview);
 	}

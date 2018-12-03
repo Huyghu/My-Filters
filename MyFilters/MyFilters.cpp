@@ -13,8 +13,14 @@
 #include "VignetFilter.h"
 
 MyFilters::MyFilters() :
-	_window(sf::VideoMode(1280, 730), "My Filters"), _downloadButton("../Assets/download.jpg", 400, 600, 135, 39),
-	_filePathBox(20, 15, 345, 35), _loadImageButton("../Assets/GoButton.png", 370, 15, 35, 35), _outputImage(20, 60, 500, 500), _isLoad(false)
+	_window(sf::VideoMode(1200, 740), "My Filters"), 
+	_downloadButton("../Assets/download2.png", 415, 15, 35, 35), 
+	_resetButton("../Assets/reload.png", 460, 15, 35, 35),
+	_loadImageButton("../Assets/GoButton.png", 370, 15, 35, 35),
+	_filePathBox(20, 15, 345, 35),
+	_outputImage(20, 60, 500, 650),
+	_savedImage(20, 60, 500, 650),
+	_isLoad(false)
 {
     filters["GreyScale"] = std::make_unique<GreyScale>();
     filters["BlueHue"] = std::make_unique<ColorHue>(0);
@@ -52,16 +58,21 @@ void MyFilters::go()
 			if (event.type == sf::Event::MouseMoved) {
 				_downloadButton.checkMouseOver(mousePosF);
 				_loadImageButton.checkMouseOver(mousePosF);
+				_resetButton.checkMouseOver(mousePosF);
 			}
 			if (event.type == sf::Event::TextEntered)
 				_filePathBox.refreshText(static_cast<char>(event.text.unicode));
 			if (event.type == sf::Event::MouseButtonPressed) {
 				if (_loadImageButton.isClicked(mousePosF))
 					loadImage(_filePathBox.getText());
+				if (_resetButton.isClicked(mousePosF))
+					resetImage();
 				if (_isLoad) {
 					for (auto &filter : filters) {
-						if (filter.second->getButton()->isClicked(mousePosF))
+						if (filter.second->getButton()->isClicked(mousePosF)) {
+							_outputImage.setRawImage(_savedImage.getRawImage().clone());
 							filter.second->applyFilter(_outputImage);
+						}
 					}
 				}
 			}
@@ -73,6 +84,7 @@ void MyFilters::go()
 		_window.draw(_filePathBox.getTextImage());
 		_window.draw(_loadImageButton.getButtonImage());
 		_window.draw(*_outputImage.getImage());
+		_window.draw(_resetButton.getButtonImage());
 		if (_isLoad) {
 			for (auto &filter : filters) {
 				_window.draw(filter.second->getButton()->getButtonImage());
@@ -86,12 +98,13 @@ void MyFilters::loadImage(std::string const &imagePath)
 {
 	try {
 		_outputImage.loadImage(imagePath);
+		_savedImage.setRawImage(_outputImage.getRawImage().clone());
 		_isLoad = true;
-		int x = 0, y = 0;
+		int x = 0, y = 10;
 		for (auto &filter : filters) {
 			filter.second->createPreview(_outputImage, 600 + x, y, 140, 140);
 			x += 145;
-			if (600 + x > 1135) {
+			if (600 + x > 1060) {
 				x = 0;
 				y += 145;
 			}
@@ -101,4 +114,8 @@ void MyFilters::loadImage(std::string const &imagePath)
 		//OUTPUT ERROR
 		return;
 	}
+}
+
+void	MyFilters::resetImage() {
+	_outputImage.setRawImage(_savedImage.getRawImage().clone());
 }
