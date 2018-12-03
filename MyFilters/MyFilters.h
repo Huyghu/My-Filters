@@ -12,6 +12,7 @@ class MyFilters {
 	Button			_loadImageButton;
 	InputBox		_filePathBox;
 	Image			_outputImage;
+	bool			_isLoad;
 	std::unordered_map<std::string, std::unique_ptr<IFilter>> filters;
 
 public:

@@ -22,6 +22,8 @@ public:
 
 	int					loadImage(std::string const &imagePath);
 	void				reloadImage();
+	sf::Texture	const	&getTexture() const;
 	std::shared_ptr<sf::Sprite> const	getImage() const;
-	cv::Mat const		&getRawImage() const;
+	cv::Mat	const		&getRawImage() const;
+	void				setRawImage(cv::Mat);
 };

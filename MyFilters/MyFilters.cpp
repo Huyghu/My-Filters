@@ -13,8 +13,8 @@
 #include "VignetFilter.h"
 
 MyFilters::MyFilters() :
-	_window(sf::VideoMode(1280, 720), "My Filters"), _downloadButton("../Assets/download.jpg", 400, 600, 135, 39),
-	_filePathBox(20, 15, 345, 35), _loadImageButton("../Assets/GoButton.png", 370, 15, 35, 35), _outputImage(20, 60, 500, 500)
+	_window(sf::VideoMode(1280, 730), "My Filters"), _downloadButton("../Assets/download.jpg", 400, 600, 135, 39),
+	_filePathBox(20, 15, 345, 35), _loadImageButton("../Assets/GoButton.png", 370, 15, 35, 35), _outputImage(20, 60, 500, 500), _isLoad(false)
 {
     filters["GreyScale"] = std::make_unique<GreyScale>();
     filters["BlueHue"] = std::make_unique<ColorHue>(0);
@@ -58,6 +58,12 @@ void MyFilters::go()
 			if (event.type == sf::Event::MouseButtonPressed) {
 				if (_loadImageButton.isClicked(mousePosF))
 					loadImage(_filePathBox.getText());
+				if (_isLoad) {
+					for (auto &filter : filters) {
+						if (filter.second->getButton()->isClicked(mousePosF))
+							filter.second->applyFilter(_outputImage);
+					}
+				}
 			}
 		}
 
@@ -67,6 +73,11 @@ void MyFilters::go()
 		_window.draw(_filePathBox.getTextImage());
 		_window.draw(_loadImageButton.getButtonImage());
 		_window.draw(*_outputImage.getImage());
+		if (_isLoad) {
+			for (auto &filter : filters) {
+				_window.draw(filter.second->getButton()->getButtonImage());
+			}
+		}
 		_window.display();
 	}
 }
@@ -75,8 +86,16 @@ void MyFilters::loadImage(std::string const &imagePath)
 {
 	try {
 		_outputImage.loadImage(imagePath);
-//        filters["GreyScale"]->applyFilter(_outputImage);
-        filters["testVignet"]->applyFilter(_outputImage);
+		_isLoad = true;
+		int x = 0, y = 0;
+		for (auto &filter : filters) {
+			filter.second->createPreview(_outputImage, 600 + x, y, 140, 140);
+			x += 145;
+			if (600 + x > 1135) {
+				x = 0;
+				y += 145;
+			}
+		}
     }
 	catch (std::exception e) {
 		//OUTPUT ERROR

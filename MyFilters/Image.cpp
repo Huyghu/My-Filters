@@ -9,6 +9,10 @@ std::shared_ptr<sf::Sprite> const	Image::getImage() const {
 	return _sprite;
 }
 
+sf::Texture	const		&Image::getTexture() const {
+	return _texture;
+}
+
 void				Image::initSprite() {
 	_sprite = std::make_shared<sf::Sprite>();
 	_sprite->setPosition(_x, _y);
@@ -39,4 +43,8 @@ int					Image::loadImage(std::string const &imagePath) {
 
 cv::Mat const		&Image::getRawImage() const {
 	return _cvImage;
+}
+
+void				Image::setRawImage(cv::Mat img) {
+	_cvImage = img;
 }
