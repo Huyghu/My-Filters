@@ -12,6 +12,7 @@ class MyFilters {
 	Button			_resetButton;
 	Button			_loadImageButton;
 	InputBox		_filePathBox;
+	InputBox		_savePath;
 	Image			_outputImage;
 	Image			_savedImage;
 	bool			_isLoad;
@@ -26,4 +27,5 @@ public:
 private:
 	void	loadImage(std::string const &);
 	void	resetImage();
+	void	downloadImage();
 };

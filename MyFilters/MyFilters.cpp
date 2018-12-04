@@ -13,11 +13,12 @@
 #include "VignetFilter.h"
 
 MyFilters::MyFilters() :
-	_window(sf::VideoMode(1200, 740), "My Filters"), 
-	_downloadButton("../Assets/download2.png", 415, 15, 35, 35), 
-	_resetButton("../Assets/reload.png", 460, 15, 35, 35),
+	_window(sf::VideoMode(1200, 800), "My Filters"), 
+	_downloadButton("../Assets/download2.png", 370, 730, 35, 35), 
+	_resetButton("../Assets/reload.png", 430, 15, 35, 35),
 	_loadImageButton("../Assets/GoButton.png", 370, 15, 35, 35),
 	_filePathBox(20, 15, 345, 35),
+	_savePath(20, 730, 345, 35),
 	_outputImage(20, 60, 500, 650),
 	_savedImage(20, 60, 500, 650),
 	_isLoad(false)
@@ -61,12 +62,15 @@ void MyFilters::go()
 				_loadImageButton.checkMouseOver(mousePosF);
 				_resetButton.checkMouseOver(mousePosF);
 			}
-			if (event.type == sf::Event::TextEntered)
+			if (event.type == sf::Event::TextEntered && !_isLoad)
 				_filePathBox.refreshText(static_cast<char>(event.text.unicode));
+			if (event.type == sf::Event::TextEntered && _isLoad)
+				_savePath.refreshText(static_cast<char>(event.text.unicode));
+
 			if (event.type == sf::Event::MouseButtonPressed) {
 				if (_loadImageButton.isClicked(mousePosF))
 					loadImage(_filePathBox.getText());
-				if (_resetButton.isClicked(mousePosF))
+				if (_isLoad && _resetButton.isClicked(mousePosF))
 					resetImage();
 				if (_isLoad) {
 					for (auto &filter : filters) {
@@ -76,6 +80,8 @@ void MyFilters::go()
 						}
 					}
 				}
+				if (_downloadButton.isClicked(mousePosF))
+					downloadImage();
 			}
 		}
 
@@ -83,6 +89,8 @@ void MyFilters::go()
 		_window.draw(_downloadButton.getButtonImage());
 		_window.draw(_filePathBox.getInputBoxImage());
 		_window.draw(_filePathBox.getTextImage());
+		_window.draw(_savePath.getInputBoxImage());
+		_window.draw(_savePath.getTextImage());
 		_window.draw(_loadImageButton.getButtonImage());
 		_window.draw(*_outputImage.getImage());
 		_window.draw(_resetButton.getButtonImage());
@@ -119,4 +127,15 @@ void MyFilters::loadImage(std::string const &imagePath)
 
 void	MyFilters::resetImage() {
 	_outputImage.setRawImage(_savedImage.getRawImage().clone());
+}
+
+
+void	MyFilters::downloadImage() {
+	try {
+		cv::imwrite(_savePath.getText, _outputImage.getRawImage());
+	}
+	catch (std::runtime_error& ex) {
+		fprintf(stderr, "Exception converting image to PNG format: %s\n", ex.what());
+		return;
+	}
 }
