@@ -135,7 +135,7 @@ void	MyFilters::resetImage() {
 
 void	MyFilters::downloadImage() {
 	try {
-		cv::imwrite(_savePath.getText(), _outputImage.getRawImage());
+		cv::imwrite("../" + _savePath.getText(), _outputImage.getRawImage());
 	}
 	catch (std::runtime_error& ex) {
 		fprintf(stderr, "Exception downloading the image: %s\n", ex.what());
