@@ -120,7 +120,8 @@ void MyFilters::loadImage(std::string const &imagePath)
 		}
     }
 	catch (std::exception e) {
-		//OUTPUT ERROR
+		_outputImage.loadImage("error.jpeg");
+		std::cout << "err" << std::endl;
 		return;
 	}
 }
