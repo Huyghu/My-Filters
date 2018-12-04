@@ -62,12 +62,14 @@ void MyFilters::go()
 				_loadImageButton.checkMouseOver(mousePosF);
 				_resetButton.checkMouseOver(mousePosF);
 			}
-			if (event.type == sf::Event::TextEntered && !_isLoad)
+			if (event.type == sf::Event::TextEntered)
 				_filePathBox.refreshText(static_cast<char>(event.text.unicode));
-			if (event.type == sf::Event::TextEntered && _isLoad)
+			if (event.type == sf::Event::TextEntered)
 				_savePath.refreshText(static_cast<char>(event.text.unicode));
 
 			if (event.type == sf::Event::MouseButtonPressed) {
+				_filePathBox.checkSelected(mousePosF);
+				_savePath.checkSelected(mousePosF);
 				if (_loadImageButton.isClicked(mousePosF))
 					loadImage(_filePathBox.getText());
 				if (_isLoad && _resetButton.isClicked(mousePosF))

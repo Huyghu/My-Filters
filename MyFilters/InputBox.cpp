@@ -2,7 +2,7 @@
 #include <iostream>
 
 InputBox::InputBox(float x, float y, float width, float height) :
-	_text(""), _box(sf::Vector2f(width, height)), _font(), _printedText()
+	_text(""), _box(sf::Vector2f(width, height)), _font(), _printedText(), _isSelected(false)
 {
 	_box.setPosition(x, y);
 	_box.setOutlineThickness(2);
@@ -21,6 +21,8 @@ InputBox::InputBox(float x, float y, float width, float height) :
 
 void InputBox::refreshText(char c)
 {
+	if (!_isSelected)
+		return;
 	if (static_cast<int>(c) == 8)
 		_text = _text.substr(0, _text.size() - 1);
 	else
@@ -41,5 +43,19 @@ sf::Text const &InputBox::getTextImage() const
 std::string const &InputBox::getText() const
 {
 	return _text;
+}
+
+void InputBox::checkSelected(sf::Vector2f const &mousePos)
+{
+	if (_box.getGlobalBounds().contains(mousePos) && _isSelected == false)
+	{
+		_isSelected = true;
+		_box.setOutlineColor(sf::Color(255, 25, 3));
+	}
+	else if (!_box.getGlobalBounds().contains(mousePos) && _isSelected == true) {
+		_isSelected = false;
+		_box.setOutlineColor(sf::Color(0, 0, 0));
+	}
+		
 }
 
